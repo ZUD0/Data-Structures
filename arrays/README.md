@@ -98,7 +98,7 @@ int main() {
 
     return 0;
 }
-🌍 Real-world applications
+# 🌍 Real-world applications
 🧱 StaticArray → embedded systems, memory-constrained environments, fixed-size buffers.
 
 📦 DynamicArray → dynamic lists, implementing higher-level containers, anytime size changes frequently.
