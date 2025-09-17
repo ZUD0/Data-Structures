@@ -98,18 +98,36 @@ int main() {
 
     return 0;
 }
-# 🌍 Real-world applications
-🧱 StaticArray → embedded systems, memory-constrained environments, fixed-size buffers.
+---
+## 🌍 Real-world Applications
 
-📦 DynamicArray → dynamic lists, implementing higher-level containers, anytime size changes frequently.
+### 🧱 StaticArray
 
-🔬 Array Algorithms → foundations for coding interviews, search engines, ML preprocessing, financial analysis (sliding windows, max subarray problems).
+* Used in embedded systems and low-level programming where memory constraints are tight.
+* Perfect for fixed-size buffers, e.g., storing sensor readings or network packet data.
+* Deterministic memory usage (no heap allocation), which is critical for real-time systems.
 
-⚠️ Common pitfalls & tips
-📏 StaticArray has fixed capacity → push_back/insert fails if full.
+---
 
-🚀 DynamicArray resizes automatically → worst-case O(n) when reallocating, but amortized O(1).
+### 📦 DynamicArray
 
-📚 arralg::two_sum and subarray_with_sum require hashable element types.
+* Used for dynamic lists where the number of elements changes frequently.
+* Underlies many higher-level containers like `std::vector` in C++.
+* Common in applications such as:
 
-✅ Prefer prefix_sums when answering multiple range-sum queries efficiently.
+  * Dynamic tables in databases
+  * Undo/redo history in editors
+  * Resizable storage for user input or logs
+
+---
+
+### 🔬 Array Algorithms
+
+* Foundations for coding interviews and real-world problem solving.
+* Practical applications:
+
+  * Search engines → substring search, indexing
+  * Machine Learning preprocessing → normalization, sliding windows
+  * Financial analysis → maximum subarray for profit/loss calculations
+  * Data stream analysis → sliding window max/min
+

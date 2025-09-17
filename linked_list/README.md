@@ -201,15 +201,47 @@ int main() {
     cache.debug_print();
     return 0;
 }
-⚠️ Common pitfalls & tips
-🧩 Memory leaks: each new must be matched with delete. Use clear() or rely on destructors to avoid leaks.
+---
 
-🧪 Default-constructible types: some helpers use dummy{T()} — T must be default-constructible for those.
+## ⚠️ Common Pitfalls & Tips
 
-🚫 No copy semantics: classes are intentionally non-copyable. Use move or recreate lists when you need copies.
+### 🧩 Memory leaks
 
-🔁 Ownership: when raw nodes are returned, confirm whether you must delete them or whether a wrapper already handled deletion.
+* Each `new` must be matched with `delete`.
+* Use `clear()` or rely on destructors to avoid leaks.
 
-⚠️ Recursion depth: recursive functions (reverse_recursive, mergesort_list) can exhaust the call stack on huge lists — prefer iterative variants for very large inputs.
+---
 
-🔒 Thread-safety: none of these containers are thread-safe. Use external synchronization if accessing from multiple threads.
+### 🧪 Default-constructible types
+
+* Some helpers use `dummy{T()}`.
+* `T` must be default-constructible for those functions to compile.
+
+---
+
+### 🚫 No copy semantics
+
+* Classes are intentionally **non-copyable** to avoid shallow-copy issues.
+* Use **move semantics** or recreate lists if you need copies.
+
+---
+
+### 🔁 Ownership
+
+* When raw nodes are returned, confirm whether **you** must delete them or whether a wrapper already freed them.
+* Avoid double-deletion bugs.
+
+---
+
+### ⚠️ Recursion depth
+
+* Recursive functions (`reverse_recursive`, `mergesort_list`) can exhaust the call stack on very large inputs.
+* Prefer iterative variants for huge datasets.
+
+---
+
+### 🔒 Thread-safety
+
+* None of these containers are thread-safe.
+* Use **external synchronization (mutexes/locks)** if accessing from multiple threads.
+

@@ -133,14 +133,40 @@ if (auto p = qs.front_ptr()) std::cout << *p << "\n";
 std::vector<std::vector<int>> g = {{1,2},{0,3},{0,3},{1,2}};
 auto [dist, parent] = qalg::bfs_on_adjlist(g, 0);
 
-⚠️ Common pitfalls & tips
+---
 
-📏 ArrayQueue is fixed-capacity: enqueue() returns false when full (no automatic resize).
+## ⚠️ Common Pitfalls & Tips
 
-🚀 Deque grows automatically; capacity is usually not a concern unless you require strict memory bounds.
+### 📏 ArrayQueue
 
-🗑️ Always call clear() or rely on destructors to avoid leaks in LinkedQueue.
+* Fixed-capacity → `enqueue()` returns `false` when full.
+* No automatic resize — choose capacity carefully.
 
-🔁 QueueWithStacks may do occasional expensive transfers, but amortized complexity is still O(1).
+---
 
-🌐 bfs_on_adjlist assumes adjacency lists have valid indices — invalid neighbors are ignored.
+### 🚀 Deque
+
+* Grows automatically when full.
+* Capacity is rarely a concern unless strict memory bounds are required.
+
+---
+
+### 🗑️ LinkedQueue
+
+* Always call `clear()` or rely on destructors to free allocated nodes.
+* Forgetting this will cause **memory leaks**.
+
+---
+
+### 🔁 QueueWithStacks
+
+* Occasional expensive transfers between stacks.
+* Still guarantees **amortized O(1)** operations for `push` and `pop`.
+
+---
+
+### 🌐 BFS on adjacency list
+
+* `bfs_on_adjlist` assumes adjacency lists contain **valid indices**.
+* Invalid neighbors are **silently ignored**.
+

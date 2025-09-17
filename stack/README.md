@@ -127,13 +127,41 @@ int main() {
     std::cout << infix_to_postfix(infix) << "\n"; // "a b c * + "
     return 0;
 }
-⚠️ Common pitfalls & tips
-🧾 Unchecked top(): prefer top_ptr() or top_or_throw() to avoid undefined behavior on empty stacks.
 
-💸 Memory: LinkedStack::push allocates nodes; ensure you clear() or rely on destructor to avoid leaks.
+---
 
-🔢 Parsing expressions: eval_postfix / eval_prefix expect whitespace-separated tokens (multi-digit and signed numbers supported in current implementation).
+## ⚠️ Common Pitfalls & Tips
 
-🧠 MinStack: uses an auxiliary stack to track minima — values equal to current min are pushed onto min stack to preserve correctness on duplicates.
+### 🧾 Unchecked `top()`
 
-📈 Largest rectangle: uses monotonic index stack; works in O(n) time and O(n) space.
+* Calling `top()` on an empty stack is **undefined behavior**.
+* Prefer using `top_ptr()` (safe, returns `nullptr`) or `top_or_throw()` (throws exception) instead.
+
+---
+
+### 💸 Memory (LinkedStack)
+
+* `LinkedStack::push` allocates nodes dynamically with `new`.
+* Always call `clear()` or rely on the destructor to avoid **memory leaks**.
+
+---
+
+### 🔢 Expression Parsing
+
+* `eval_postfix` and `eval_prefix` expect **whitespace-separated tokens**.
+* Supports multi-digit numbers and signed values in the current implementation.
+
+---
+
+### 🧠 MinStack
+
+* Maintains an auxiliary stack to track minima.
+* **Duplicates**: values equal to the current minimum are pushed as well to ensure correctness when popping.
+
+---
+
+### 📈 Largest Rectangle in Histogram
+
+* Uses a **monotonic index stack**.
+* Runs in **O(n) time** with **O(n) space** complexity.
+

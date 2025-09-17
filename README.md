@@ -41,214 +41,216 @@
 	<li>🧮 Sorting (Quicksort, Mergesort)</li>
 </ul>
 
-<h3>🔹 2. Linked Lists</h3>
+🔹 2. Linked Lists
 
-<b>Implementation:</b>
-<ul>
-	<li>Singly, Doubly, Circular LL</li>
-	<li>Insert at head/tail/pos, delete, search</li>
-</ul>
+Implementation
 
-Classical Problems:
+🟦 Singly Linked List (SLL) — insert at head/tail/pos, delete, search
 
-Reverse linked list (iterative + recursive)
+🟩 Doubly Linked List (DLL) — insert at head/tail/pos, delete, search
 
-Detect cycle (Floyd’s algo)
+🟨 Circular Linked List — tail → head maintenance, insert/delete by pos
 
-Merge two sorted lists
+Classical Problems
 
-Remove nth node from end
+🔁 Reverse linked list — iterative & recursive
 
-Find middle node
+🔍 Detect cycle (Floyd’s tortoise & hare)
 
-LRU Cache (LL + HashMap)
+🔗 Merge two sorted lists (in-place)
 
-Algorithms:
+🔢 Remove nth node from end (two-pointer)
 
-Fast/slow pointer (Cycle detection)
+🎯 Find middle node (fast/slow)
 
-Mergesort on Linked List
+🗂️ LRU Cache (DLL + hashmap)
+
+Algorithms / Concepts
+
+🐢🐇 Fast & slow pointers (cycle detection, middle node)
+
+🔀 Merge sort on linked list (O(n log n), no extra arrays)
 
 🔹 3. Stacks
 
-Implementation:
+Implementation
 
-Array-based stack
+📚 Array-based stack (fixed-capacity)
 
-Linked list stack
+🔗 Linked list stack (dynamic)
 
-Classical Problems:
+Classical Problems
 
-Balanced parentheses
+✅ Balanced parentheses / bracket matching
 
-Next greater element
+🔼 Next greater element (stack / monotonic stack)
 
-Min stack (O(1) min)
+🧮 MinStack — O(1) getMin()
 
-Evaluate postfix/prefix expression
+🧾 Evaluate postfix & prefix expressions
 
-Largest rectangle in histogram
+🏗️ Largest rectangle in histogram (monotonic stack)
 
-Algorithms:
+Algorithms / Concepts
 
-Monotonic stack
+🧰 Monotonic stack patterns (next/previous smaller/greater)
 
-Infix → Postfix conversion
+✍️ Infix → Postfix conversion (Shunting-Yard algorithm)
 
 🔹 4. Queues
 
-Implementation:
+Implementation
 
-Array queue (circular queue)
+🔁 Array queue (circular/ring buffer)
 
-Linked list queue
+🔗 Linked list queue (front/tail pointers)
 
-Deque (double-ended queue)
+↔️ Deque (double-ended queue) — push/pop both ends
 
-Classical Problems:
+Classical Problems
 
-Implement stack using queues
+🔁 Implement stack using queues
 
-Implement queue using stacks
+⚖️ Implement queue using stacks
 
-Sliding window maximum (deque)
+🪟 Sliding window maximum (deque trick)
 
-Rotten oranges (BFS)
+🧪 Rotten Oranges (BFS on grid)
 
-First non-repeating character in stream
+🔡 First non-repeating character in a stream
 
-Algorithms:
+Algorithms / Concepts
 
-BFS (graph/grid traversal)
+🌐 BFS (graph / grid traversal)
 
-Sliding window
+🔍 Sliding window (two-pointer / deque patterns)
 
 🔹 5. Heaps (Priority Queue)
 
-Implementation:
+Implementation
 
-Min-heap & Max-heap
+⬆️ Max-heap & ⬇️ Min-heap (array-backed binary heap)
 
-Heapify, insert, extract
+⚙️ Heapify, push (insert), pop (extract)
 
-Classical Problems:
+Classical Problems
 
-Heap sort
+🧹 Heap sort (in-place)
 
-Kth largest/smallest element
+#️⃣ K-th largest / smallest element
 
-Merge k sorted arrays/lists
+🔀 Merge k sorted arrays / lists (use heap)
 
-Top K frequent elements
+🔝 Top K frequent elements
 
-Median of data stream
+🧮 Median of data stream (two-heap trick)
 
-Algorithms:
+Algorithms / Concepts
 
-Heapify (O(n))
+🛠️ heapify in O(n) (bottom-up build)
 
-Priority queue scheduling
+🗓️ Priority scheduling & task queues
 
 🔹 6. Binary Trees
 
-Implementation:
+Implementation
 
-Node structure
+🌳 Basic TreeNode structure (left/right child)
 
-Recursive/iterative traversals
+🔁 Recursive & iterative traversals (inorder, preorder, postorder)
 
-Classical Problems:
+Classical Problems
 
-Inorder, Preorder, Postorder, Level Order
+🔁 Inorder / Preorder / Postorder / Level-order traversals
 
-Height/Depth of tree
+📏 Height / Depth of a tree
 
-Diameter of tree
+🌉 Diameter of tree
 
-Lowest Common Ancestor (LCA)
+🧭 Lowest Common Ancestor (LCA) — recursive and binary-lifting (optional)
 
-Path sum problems
+➕ Path sum problems (root→leaf sums, k-sum paths)
 
-Serialize & Deserialize tree
+🔄 Serialize & Deserialize tree (string / vector forms)
 
-Algorithms:
+Algorithms / Concepts
 
-DFS (recursive & iterative)
+🔍 DFS (recursive & iterative with stack)
 
-BFS level-order
+🌐 BFS (level-order using queue)
 
-Recursion + backtracking
+🔁 Recursion + backtracking patterns
 
 🔹 7. Binary Search Trees (BST)
 
-Implementation:
+Implementation
 
-Insert, search, delete
+🌿 BST insert, search, delete
 
-Traversals
+🔁 BST traversals (inorder = sorted order)
 
-Classical Problems:
+Classical Problems
 
-Validate BST
+✅ Validate BST
 
-Kth smallest/largest element
+#️⃣ K-th smallest / largest element (inorder traversal)
 
-LCA in BST
+🧭 LCA in BST (use ordering property)
 
-Convert sorted array to BST
+🔁 Convert sorted array → balanced BST (divide & conquer)
 
-Floor & Ceil in BST
+〈Floor & Ceil〉 operations in BST
 
-Algorithms:
+Algorithms / Concepts
 
-Inorder traversal = sorted order
+🔁 Inorder traversal yields sorted list
 
-Self-balancing trees (AVL, Red-Black – advanced)
+⚖️ Self-balancing trees (AVL, Red-Black) — advanced topics
 
 🔹 8. Graphs
 
-Implementation:
+Implementation
 
-Adjacency list & matrix
+🗂️ Adjacency list & adjacency matrix representations
 
-Directed / Undirected
+↔️ Directed / Undirected graphs
 
-Weighted / Unweighted
+⚖️ Weighted / Unweighted graphs
 
-Classical Problems:
+Classical Problems
 
-DFS, BFS
+🔎 DFS & BFS traversals
 
-Cycle detection (directed/undirected)
+🔁 Cycle detection (directed via DFS colors; undirected via parent check)
 
-Topological sort (DFS + Kahn’s algo)
+📜 Topological sort (DFS & Kahn’s algorithm)
 
-Shortest path: Dijkstra, Bellman-Ford
+🧭 Shortest paths: Dijkstra, Bellman-Ford
 
-Minimum Spanning Tree: Kruskal, Prim
+🌲 Minimum Spanning Tree: Kruskal, Prim
 
-Connected components (Union-Find, DFS)
+🧩 Connected components (Union-Find / DFS)
 
-Bipartite check
+⚖️ Bipartite check
 
-Bridges & articulation points (Tarjan’s algo)
+🌉 Bridges & articulation points (Tarjan’s algorithm)
 
-Algorithms:
+Algorithms / Concepts
 
-Union-Find (DSU)
+🧷 Disjoint Set Union (Union-Find)
 
-Dijkstra, Bellman-Ford, Floyd-Warshall
+⛳ Dijkstra, Bellman-Ford, Floyd-Warshall
 
-Kruskal, Prim
+🧰 Kruskal & Prim for MST
 
-Tarjan’s SCC
-
-Kosaraju’s SCC
+🔄 Tarjan’s SCC, Kosaraju’s SCC
 
 ✅ Goal
 
-Implement all data structures from scratch
+🔨 Implement all data structures from scratch (no STL shortcuts)
 
-Solve their classical problems
+🧩 Solve their classical problems and edge cases
 
-Master the algorithms built on top
+🧠 Master the algorithms built on top of each data structure
+
+🧪 Write tests / drivers and clear README docs for each module
