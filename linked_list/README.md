@@ -1,145 +1,118 @@
-# 🔗 Linked Lists — README
 
-👋 **Welcome!**  
-This folder implements several linked-list data structures and common linked-list algorithms in plain, beginner-friendly C++.
+
+# 🔗 Linked Lists
+
+👋 **Welcome!**
+This folder implements several **linked-list data structures** and common linked-list algorithms in plain, beginner-friendly C++.
 
 ---
 
 ## 📄 Files included
-- 🟦 **`singly_linked_list.h`** — `SinglyLinkedList<T>` and `SLLNode<T>` (singly linked list)  
-- 🟩 **`doubly_linked_list.h`** — `DoublyLinkedList<T>` and `DLLNode<T>` (doubly linked list)  
-- 🟨 **`circular_linked_list.h`** — `CircularLinkedList<T>` and `CLLNode<T>` (circular singly-linked list)  
-- 🧩 **`linked_list_algorithms.h`** — useful algorithms operating on `SLLNode<T>*` and helpers for `SinglyLinkedList<T>` (reverse, detect cycle, merge sort, etc.)  
-- 🗂️ **`lru_cache.h`** — `LRUCache<Key, Value>` implemented with a doubly linked list + `unordered_map` for O(1) get/put  
-- 📝 **`main_linked_list.cpp`** — example / demo driver (if present in your repo)
+
+* 🟦 **`singly_linked_list.h`** — `SinglyLinkedList<T>` and `SLLNode<T>` (singly linked list)
+* 🟩 **`doubly_linked_list.h`** — `DoublyLinkedList<T>` and `DLLNode<T>` (doubly linked list)
+* 🟨 **`circular_linked_list.h`** — `CircularLinkedList<T>` and `CLLNode<T>` (circular singly-linked list)
+* 🧩 **`linked_list_algorithms.h`** — utilities operating on raw `SLLNode<T>*` (reverse, detect cycle, merge sort, etc.)
+* 🗂️ **`lru_cache.h`** — `LRUCache<Key, Value>` built from a doubly linked list + `unordered_map` for O(1) get/put
+* 📝 **`main_linked_list.cpp`** — example / demo driver (optional)
 
 ---
 
-## 🧠 High-level overview (plain language)
-- 🔵 **Singly linked list**: each node points to the *next* node. Good for cheap insertion/removal at the head and node-level manipulation.  
-- 🟢 **Doubly linked list**: nodes have both `prev` and `next`, enabling O(1) removal when you already have the node pointer.  
-- 🟡 **Circular linked list**: tail → head, i.e. the list loops — great for round-robin or ring-buffer semantics.  
-- 🗃️ **LRU Cache**: real-world example using a doubly linked list + hash map to evict least-recently-used entries in O(1).
+## 🧠 High-level overview
 
----
-
-## ⚙️ Important implementation notes / semantics
-- 🧹 Nodes are allocated with `new` and deleted with `delete`. Destructors and `clear()` free memory.  
-- 🚫 Copy constructors are disabled in many classes to avoid shallow-copy bugs. Move constructors are provided where useful.  
-- 🔢 `operator[]` is intentionally **not** provided for linked lists — random access is O(n). Use traversal or helpers.  
-- 🛠️ Many functions in `linked_list_algorithms.h` accept raw `SLLNode<T>*` and **may delete nodes**; be careful when mixing raw nodes and container-managed nodes.  
-- ✅ Functions return pointers or `std::pair`/`std::optional` to indicate success / provide results — always check return values before dereferencing.
+* 🔵 **Singly linked list** → nodes point forward only. Cheap head insertions, good for sequential processing.
+* 🟢 **Doubly linked list** → nodes point both ways (`prev`, `next`). Enables O(1) removal when you already have a pointer.
+* 🟡 **Circular linked list** → tail connects back to head. Great for round-robin scheduling and ring buffers.
+* 🗃️ **LRU Cache** → real-world application: a doubly linked list + hash map for O(1) cache lookups and evictions.
 
 ---
 
 ## 📊 API reference + time complexity
 
-> Complexity notes assume `n` = number of nodes.
+### 🔵 `SinglyLinkedList<T>`
 
-### `SinglyLinkedList<T>`
-| Method | Description | Time |
-|---|---|---|
-| `SinglyLinkedList()` | constructor | O(1) |
-| `size()` | number of elements | O(1) |
-| `empty()` | is list empty | O(1) |
-| `push_front(const T&)` | insert at head | O(1) |
-| `push_back(const T&)` | append at tail (tail tracked) | O(1) |
-| `insert_at(pos, val)` | insert at index `pos` | O(n) |
-| `erase_at(pos)` | remove at index `pos` | O(n) |
-| `remove_value(val)` | remove first occurrence | O(n) |
-| `find(val)` | returns `Node*` or `nullptr` | O(n) |
-| `clear()` | delete all nodes | O(n) |
-| `print()` | print contents | O(n) |
-| `reverse_iterative()` | reverse list in-place | O(n) |
-| `reverse_recursive()` | reverse list (recursive) | O(n) time, O(n) recursion stack |
-| `remove_nth_from_end(n)` | remove n-th from end (1-based) | O(n) |
-| `find_middle()` | return middle (first of two when even) | O(n) |
-| `merge_sorted_inplace(other)` | merge sorted `other` into this, reusing nodes | O(n) |
-
-**Notes:**  
-- `push_back` is O(1) because the implementation keeps a `tail` pointer.  
-- `merge_sorted_inplace` moves nodes from `other` into `this` and empties `other`.
+| Method                        | Description                 | Time                       |
+| ----------------------------- | --------------------------- | -------------------------- |
+| `size()`                      | number of elements          | O(1)                       |
+| `empty()`                     | is list empty               | O(1)                       |
+| `push_front(val)`             | insert at head              | O(1)                       |
+| `push_back(val)`              | insert at tail (tracked)    | O(1)                       |
+| `insert_at(pos, val)`         | insert at index             | O(n)                       |
+| `erase_at(pos)`               | remove at index             | O(n)                       |
+| `remove_value(val)`           | remove first occurrence     | O(n)                       |
+| `find(val)`                   | return pointer or `nullptr` | O(n)                       |
+| `reverse_iterative()`         | reverse list in-place       | O(n)                       |
+| `reverse_recursive()`         | recursive reverse           | O(n), recursion depth O(n) |
+| `remove_nth_from_end(n)`      | remove n-th from end        | O(n)                       |
+| `find_middle()`               | find middle node            | O(n)                       |
+| `merge_sorted_inplace(other)` | merge sorted list           | O(n)                       |
 
 ---
 
-### `DoublyLinkedList<T>`
-| Method | Description | Time |
-|---|---|---|
-| `DoublyLinkedList()` | constructor | O(1) |
-| `push_front(const T&)` | insert at head | O(1) |
-| `push_back(const T&)` | insert at tail | O(1) |
+### 🟢 `DoublyLinkedList<T>`
+
+| Method                                 | Description     | Time |
+| -------------------------------------- | --------------- | ---- |
+| `push_front(val)`                      | insert at head  | O(1) |
+| `push_back(val)`                       | insert at tail  | O(1) |
+| `insert_at(pos, val)`                  | insert at index | O(n) |
+| `pop_front()`                          | remove head     | O(1) |
+| `pop_back()`                           | remove tail     | O(1) |
+| `erase_at(pos)`                        | remove at index | O(n) |
+| `find(val)`                            | linear search   | O(n) |
+| `print_forward()` / `print_backward()` | traversal       | O(n) |
+
+---
+
+### 🟡 `CircularLinkedList<T>`
+
+| Method                | Description     | Time |
+| --------------------- | --------------- | ---- |
+| `push_front(val)`     | insert at head  | O(1) |
+| `push_back(val)`      | insert at tail  | O(1) |
 | `insert_at(pos, val)` | insert at index | O(n) |
-| `pop_front()` | remove head | O(1) |
-| `pop_back()` | remove tail | O(1) |
-| `erase_at(pos)` | remove at index | O(n) |
-| `find(val)` | linear search | O(n) |
-| `clear()` | delete all nodes | O(n) |
-| `print_forward()` / `print_backward()` | show list | O(n) |
-
-**Notes:** removal is O(1) if you already have the node pointer (because `prev` is available).
+| `pop_front()`         | remove head     | O(1) |
+| `pop_back()`          | remove tail     | O(n) |
+| `erase_at(pos)`       | remove at index | O(n) |
+| `find(val)`           | linear search   | O(n) |
+| `print()`             | finite print    | O(n) |
 
 ---
 
-### `CircularLinkedList<T>`
-| Method | Description | Time |
-|---|---|---|
-| `CircularLinkedList()` | constructor | O(1) |
-| `push_front(const T&)` | insert at head | O(1) |
-| `push_back(const T&)` | insert at tail | O(1) |
-| `insert_at(pos, val)` | insert at index | O(n) |
-| `pop_front()` | remove head | O(1) |
-| `pop_back()` | remove tail | O(n) (needs traversal to find node before tail) |
-| `erase_at(pos)` | remove at index | O(n) |
-| `find(val)` | linear search | O(n) |
-| `clear()` | delete all nodes | O(n) |
-| `print()` | finite print | O(n) |
+### 🧩 `linked_list_algorithms.h` (raw node utilities)
 
-**Notes:** tail->next always points to head when non-empty. `pop_back()` is O(n) here because no `prev` pointer is stored.
+| Function                       | Description                 | Time             |
+| ------------------------------ | --------------------------- | ---------------- |
+| `reverse_iterative(head)`      | reverse list                | O(n)             |
+| `reverse_recursive(head)`      | recursive reverse           | O(n)             |
+| `has_cycle(head)`              | detect cycle (Floyd’s algo) | O(n), O(1) space |
+| `detect_cycle_entry(head)`     | find entry node of cycle    | O(n)             |
+| `merge_two_sorted(l1, l2)`     | merge sorted lists          | O(n)             |
+| `remove_nth_from_end(head, n)` | remove n-th from end        | O(n)             |
+| `find_middle(head)`            | return middle node          | O(n)             |
+| `mergesort_list(head)`         | merge sort                  | O(n log n)       |
 
 ---
 
-### `linked_list_algorithms.h` (raw `SLLNode<T>*` utilities)
-| Function | What it does | Time |
-|---|---|---|
-| `reverse_iterative(SLLNode*)` | reverse raw list, return new head | O(n) |
-| `reverse_recursive(SLLNode*)` | recursive reverse, return head | O(n) |
-| `has_cycle(SLLNode*)` | Floyd cycle detection | O(n) time, O(1) space |
-| `detect_cycle_entry(SLLNode*)` | find start of cycle, if any | O(n) |
-| `merge_two_sorted(SLLNode*, SLLNode*)` | merge two sorted raw lists | O(n) |
-| `remove_nth_from_end(SLLNode*, n)` | remove n-th from end | O(n) |
-| `find_middle(SLLNode*)` | return middle node | O(n) |
-| `split_list, mergesort_list` | mergesort on linked list | O(n log n) time, O(log n) recursion depth |
+### 🗂️ `LRUCache<Key, Value>`
 
-**Notes:**  
-- Some helpers use `dummy{T()}` which requires `T` to be default-constructible.  
-- Wrapper functions that accept `SinglyLinkedList<T>&` typically rebuild the high-level list from node values to keep ownership consistent.
+* Uses doubly linked list + hash map.
+* Head = most recent, tail = least recent.
+
+| Method                  | Description                   | Time     |
+| ----------------------- | ----------------------------- | -------- |
+| `get(key)`              | lookup + move to front        | O(1) avg |
+| `put(key, val)`         | insert/update (evict if full) | O(1) avg |
+| `erase(key)`            | remove key                    | O(1) avg |
+| `clear()`               | delete all entries            | O(n)     |
+| `size()` / `capacity()` | inspect                       | O(1)     |
 
 ---
 
-### `LRUCache<Key, Value>`
-Implements an LRU (Least Recently Used) cache using:
-- a doubly linked list to maintain recency order (head = most recent), and  
-- an `unordered_map<Key, Node*>` for O(1) lookup.
-
-| Method | Complexity |
-|---|---|
-| `LRUCache(size_t capacity)` | constructor |
-| `std::optional<Value> get(const Key&)` | lookup and move to front — O(1) average |
-| `void put(const Key&, const Value&)` | insert or update; may evict — O(1) average |
-| `bool erase(const Key&)` | remove entry — O(1) average |
-| `void clear()` | remove all entries — O(n) |
-| `size()` / `capacity()` | inspect — O(1) |
-| `debug_print()` | print keys most→least recent — O(n) |
-
-**Notes:**  
-- `get` returns `std::optional<Value>` (empty if not found). If your compiler lacks `<optional>`, consider pointer return or `pair<bool, Value>` alternatives.  
-- `put` evicts the least-recently-used item when the cache exceeds its `capacity()`.
-
----
-
-## 💻 Example usage snippets
+## 💻 Example usage
 
 ### Singly linked list
+
 ```cpp
 #include "singly_linked_list.h"
 #include <iostream>
@@ -154,11 +127,12 @@ int main() {
     s.print();               // [3 -> 2 -> 1]
     s.remove_nth_from_end(2);
     s.print();               // [3 -> 1]
-    return 0;
 }
-Doubly linked list
-cpp
-Copy code
+```
+
+### Doubly linked list
+
+```cpp
 #include "doubly_linked_list.h"
 #include <iostream>
 
@@ -170,24 +144,29 @@ int main() {
     d.print_forward();    // [zero <-> one <-> two]
     d.pop_back();
     d.print_forward();    // [zero <-> one]
-    return 0;
 }
-Circular linked list
-cpp
-Copy code
+```
+
+### Circular linked list
+
+```cpp
 #include "circular_linked_list.h"
 #include <iostream>
 
 int main() {
-    CircularLinkedList<int> ring = {10, 20, 30};
+    CircularLinkedList<int> ring;
+    ring.push_back(10);
+    ring.push_back(20);
+    ring.push_back(30);
     ring.push_front(5);   // [5 -> 10 -> 20 -> 30]
     ring.pop_back();      // removes 30
     ring.print();
-    return 0;
 }
-LRU Cache
-cpp
-Copy code
+```
+
+### LRU Cache
+
+```cpp
 #include "lru_cache.h"
 #include <iostream>
 
@@ -195,53 +174,21 @@ int main() {
     LRUCache<int, std::string> cache(2);
     cache.put(1, "one");
     cache.put(2, "two");
-    auto v = cache.get(1); // moves key 1 to front
-    if (v.has_value()) std::cout << *v << "\n";
+    auto v = cache.get(1);
+    if (v.has_value()) std::cout << *v << "\n"; // prints "one"
     cache.put(3, "three"); // evicts key 2
     cache.debug_print();
-    return 0;
 }
----
-
-## ⚠️ Common Pitfalls & Tips
-
-### 🧩 Memory leaks
-
-* Each `new` must be matched with `delete`.
-* Use `clear()` or rely on destructors to avoid leaks.
+```
 
 ---
 
-### 🧪 Default-constructible types
+## ⚠️ Common pitfalls & tips
 
-* Some helpers use `dummy{T()}`.
-* `T` must be default-constructible for those functions to compile.
-
----
-
-### 🚫 No copy semantics
-
-* Classes are intentionally **non-copyable** to avoid shallow-copy issues.
-* Use **move semantics** or recreate lists if you need copies.
-
----
-
-### 🔁 Ownership
-
-* When raw nodes are returned, confirm whether **you** must delete them or whether a wrapper already freed them.
-* Avoid double-deletion bugs.
-
----
-
-### ⚠️ Recursion depth
-
-* Recursive functions (`reverse_recursive`, `mergesort_list`) can exhaust the call stack on very large inputs.
-* Prefer iterative variants for huge datasets.
-
----
-
-### 🔒 Thread-safety
-
-* None of these containers are thread-safe.
-* Use **external synchronization (mutexes/locks)** if accessing from multiple threads.
+* 🧹 **Memory leaks** → always call `clear()` or rely on destructors.
+* 🧪 **Default-constructible types** → some helpers require `T()` to exist.
+* 🚫 **No copy semantics** → lists are non-copyable to avoid shallow copies. Use move semantics.
+* 🔁 **Ownership** → know whether you own a raw node before deleting it.
+* ⚠️ **Recursion depth** → avoid recursive functions on huge lists.
+* 🔒 **Thread-safety** → not thread-safe. Wrap in mutexes if needed.
 
