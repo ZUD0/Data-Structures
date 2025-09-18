@@ -1,2 +1,6 @@
-./tests
-./.vscode
+/tests
+/.vscode
+
+# ignore compiled c++ files
+# for windows
+*.exe
