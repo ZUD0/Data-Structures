@@ -1,5 +1,7 @@
-./tests
-./.vscode
 
-plannext.md
+
+# ignore compiled c++ files
+# for windows
+*.exe
 planecurrent.md
+plannext.md
